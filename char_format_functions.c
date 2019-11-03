@@ -30,4 +30,28 @@ int format_char(va_list ap)
 	byte++;
 	/*Return the bytes number*/
 	return(byte);
+}
+
+/**
+ * prt_nil - prints a null message
+ * @ap: string char by char
+ *
+ * Return: bytes total
+ */
+
+/* This function will prints null when it's neccesary */
+int format_nil(va_list ap)
+{
+	/* 1- init variable for byte counter */
+	int byte = 0;
+
+	/* 2- cast the   list  with void to avoid return type fo
+	   the list */
+	(void) ap;
+
+	/* 3- print Null*/
+	write(1, "(null)", 6);
+
+	/* 4- return byte count*/
+	return (byte);
 }  
