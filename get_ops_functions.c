@@ -24,7 +24,7 @@ int (*get_ops_function(char s))(va_list ap)
 	/* 3- Create an instance of ous structure. this contains a 
 	   char (format, type) and a function pointer for each property */
 	d_dt data_types[] = {
-		{"c", ptr_chr} /* 3.1- 'c' format as type anf func */
+		{"c", format_char} /* 3.1- 'c' format as type anf func */
 	};
 
 	/* 4- while our counter  i  be less than the length of the
@@ -36,8 +36,8 @@ int (*get_ops_function(char s))(va_list ap)
 		/* 4.1- If the char format is equal to the type in 
 		   the property in the data_type index, return the
 		   function in this property */
-		if (s == data_types[i].type)
-			return (data_types.[i].f);
+		if (s == *data_types[i].type)
+			return (data_types[i].f);
 
 
 		/* 4.2- i + 1 to continue the loop */
@@ -53,5 +53,6 @@ int (*get_ops_function(char s))(va_list ap)
 	/* 6-we have to return now a error message because the 
 	   argument is not equal to no one format, so return an
 	   instance for the unknowned format function */
-	return (format_ukn);
+	/*return (format_ukn);*/
+	return (0);
 }

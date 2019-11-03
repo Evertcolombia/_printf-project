@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdarg.h>
-#include "holerton.h"
+#include "holberton.h"
 
 /**
  * _printf - print a formatted text
@@ -12,11 +12,11 @@
 int _printf(const char *format, ...)
 {
 	/* 1- init variables for counter and bytes */
-	int i = 0; byte  = 0;
+	int i = 0, byte  = 0;
 
 	/* 2- Init a funtion pointer that will be return
 	   for this function */
-	int (*excecute)(va_list ap);
+	int (*execute)(va_list ap);
 	
 	/* 3- Init the va_list with the unknown arguments, 
 	   then start it */
@@ -32,7 +32,7 @@ int _printf(const char *format, ...)
 	{
 		/* 6- If format in his index is same to %
 		     we have to look wich's the follow character */
-		if (format[i] == %)
+		if (format[i] == '%')
 		{
 			/* 6.1- While format in the next character
 			   of % is equal to ' ' or /t, plus index in
@@ -51,7 +51,7 @@ int _printf(const char *format, ...)
 				    the get_ops_functions and return
 				    the correct function for the  
 				    format that we send*/
-				execute = get_ops_functions(format[i +1]);
+				execute = get_ops_function(format[i +1]);
 				/* 6.4- Now use the intance that
 				     contains our function for the 
 				     correct format, pasing our ap 
