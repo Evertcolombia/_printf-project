@@ -33,17 +33,12 @@ int format_char(va_list ap)
 }
 
 /**
-<<<<<<< HEAD
  * prt_str - prints a string 
-=======
- * prt_nil - prints a null message
->>>>>>> format_functions
  * @ap: string char by char
  *
  * Return: bytes total
  */
 
-<<<<<<< HEAD
 /* This function recived a list of argument in this case is a 
 string */
 int format_str(va_list ap)
@@ -108,7 +103,7 @@ int format_percent(va_list ap)
 	/* 4 - Return the number of bytes*/
 	return (byte);
 }
-=======
+
 /* This function will prints null when it's neccesary */
 int format_nil(va_list ap)
 {
@@ -124,5 +119,26 @@ int format_nil(va_list ap)
 
 	/* 4- return byte count*/
 	return (byte);
-}  
->>>>>>> format_functions
+}
+
+/**
+ * prt_ukn - prints an unnonewd type
+ * @ap: string char by char
+ *
+ * Return: bytes total
+ */
+
+/* This function is by unknowned format */
+int format_unkn(va_list ap)
+{
+	/* 1- init byte counter */
+	int byte = 0;
+	/* 2- cast the list by a void type */
+	(void) ap;
+
+	/* 3- print null */
+	write (1, "(null)", 6);
+
+	/* 4- Return bytr counter */
+	return (byte);
+}

@@ -55,6 +55,5 @@ int (*get_ops_function(char s))(va_list ap)
 	/* 6-we have to return now a error message because the 
 	   argument is not equal to no one format, so return an
 	   instance for the unknowned format function */
-	/*return (format_ukn);*/
-	return (0);
+	return (format_unkn);
 }

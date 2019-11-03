@@ -7,7 +7,8 @@ int (*get_ops_function(char s))(va_list ap);
 int format_char(va_list ap);
 int format_str(va_list ap);
 int format_percent(va_list ap);
-int formtat_null(va_list ap);
+int format_nil(va_list ap);
+int format_unkn(va_list ap);
 
 /**
  * struct data - contains data in two columns
