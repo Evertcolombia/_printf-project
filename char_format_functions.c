@@ -79,3 +79,27 @@ int format_str(va_list ap)
 	/* 5- Return bytes numbers*/
 	return (byte);
 }
+
+/**
+ * prt_pct - prints a % sign
+ * @ap: string char by char
+ *
+ * Return: bytes total
+ */
+
+/* This function will print a % if recives as argument another % */
+int format_percent(va_list ap)
+{
+	/* 1- init variable yte for the count of bytes */
+	int byte = 0;
+
+	/* 2- print a % sing, after  byte plus one and*/
+	write(1, "%", 1);
+	byte++;
+
+	/* 3- cast ap to get no return value */
+	(void) ap;
+
+	/* 4 - Return the number of bytes*/
+	return (byte);
+}

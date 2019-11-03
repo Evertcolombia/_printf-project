@@ -11,8 +11,13 @@ int main (void)
 {
 	char a = 'H';
 	
-	printf("Expected: [%c] %s\n", a, "Fuck");
-	_printf("Result: [%c] %s\n", a, "FUCK");
+	printf("Expected: [%c]\n", a);
+	_printf("Result: [%c]\n", a);
+	printf("Expected: %s\n","Fuck");
+        _printf("Result: %s\n", "FUCK");
+	printf("Expected: [%%]\n");
+        _printf("Result: [%%]\n");
+
 
 	return (0);
 }
