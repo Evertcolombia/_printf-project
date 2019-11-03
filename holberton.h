@@ -2,6 +2,11 @@
 #define _HOLBERTON_H_
 #include <stdarg.h>
 
+int _printf(const char *format, ...);
+int (*get_ops_function(char s))(va_list ap);
+int format_char(va_list ap);
+int format_str(va_list ap);
+
 /**
  * struct data - contains data in two columns
  * @type: data type
@@ -15,7 +20,4 @@ typedef struct data
 	int (*f)(va_list ap);
 } d_dt;
 
-int _printf(const char *format, ...);
-int (*get_ops_function(char s))(va_list ap);
-int format_char(va_list ap);
 #endif /* _HOLBERTON_H_ */

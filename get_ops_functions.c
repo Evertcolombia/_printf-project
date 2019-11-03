@@ -24,14 +24,15 @@ int (*get_ops_function(char s))(va_list ap)
 	/* 3- Create an instance of ous structure. this contains a 
 	   char (format, type) and a function pointer for each property */
 	d_dt data_types[] = {
-		{"c", format_char} /* 3.1- 'c' format as type anf func */
+		{"c", format_char},/*3.1-'c' format as type and func*/
+		{"s", format_str}/*3.2 -'s' format as type and func*/
 	};
 
 	/* 4- while our counter  i  be less than the length of the
 	   data_type intance, we want to look if the char format that
 	   user passed is in our structure to return the correct
 	   function */
-	while (i < 1)
+	while (i < 2)
 	{
 		/* 4.1- If the char format is equal to the type in 
 		   the property in the data_type index, return the
