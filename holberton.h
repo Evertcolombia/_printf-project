@@ -3,7 +3,7 @@
 #include <stdarg.h>
 
 int _printf(const char *format, ...);
-int (*get_ops_function(char s))(va_list ap);
+int (*get_ops_function(char s, int *bytes))(va_list ap);
 int format_char(va_list ap);
 int format_str(va_list ap);
 int format_percent(va_list ap);
