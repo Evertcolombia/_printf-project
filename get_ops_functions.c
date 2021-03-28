@@ -16,10 +16,12 @@ int (*get_ops_function(char s, int *bytes))(va_list ap)
 	d_dt data_types[] = {
 		{"c", format_char},
 		{"s", format_str},
-		{"%", format_percent}
+		{"%", format_percent},
+		{"i", format_int},
+		{"d", format_int}
 	};
 
-	while (i < 3)
+	while (i < 5)
 	{
 		if (s == *data_types[i].type)
 			return (data_types[i].f);

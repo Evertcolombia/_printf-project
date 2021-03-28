@@ -12,7 +12,7 @@
 int _printf(const char *format, ...)
 {
 	int bytes  = 0;
-	char *head, *current;
+	char *head, *current, *init;
 	int (*execute)(va_list ap);
 	va_list ap;
 
@@ -20,7 +20,7 @@ int _printf(const char *format, ...)
 		return (-1);
 
 	va_start(ap, format);
-	current = head = (char *) format;
+	current = head = init = (char *) format;
 
 	while (*head)
 	{
@@ -35,8 +35,8 @@ int _printf(const char *format, ...)
 				continue;
 			}
 			execute = get_ops_function(*(head + 1), &bytes);
-			bytes += execute(ap), current = ++head;
-			head++;
+			bytes += execute(ap), current = init;
+			head += 2;
 		}
 		else
 			bytes += write(1, head++, 1);

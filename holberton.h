@@ -9,7 +9,7 @@ int format_str(va_list ap);
 int format_percent(va_list ap);
 int format_nil(va_list ap);
 int format_unkn(va_list ap);
-
+int format_int(va_list ap);
 /**
  * struct data - contains data in two columns
  * @type: data type
