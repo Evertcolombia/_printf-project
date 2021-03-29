@@ -9,12 +9,13 @@
  * Return: nmber of bytes
  */
 
-int format_char(va_list ap)
+int format_char(va_list ap, char **buffer)
 {
 	char p;
 
 	p = (char) va_arg(ap, int);
-	return(write(1, &p, 1));
+	*(*buffer) = p;
+	return (1);
 }
 
 /**
@@ -23,22 +24,21 @@ int format_char(va_list ap)
  *
  * Return: bytes total
  */
-int format_str(va_list ap)
+int format_str(va_list ap, char **buffer)
 {
-	char *p;
+	char *p, *n = "(null)", *copy = *buffer;
 	int bytes = 0, e = 0;
 
 	p = va_arg(ap, char *);
 	if (p)
 	{
 		while (*(p + e))
-		{
-			bytes += write(1, p + e, 1);
-			e++;
-		}
+			*copy++ = p[e++], bytes++;
 	}
-	else
-		bytes += write(1, "(null)", 6);
+	else{
+		while ((*copy++ = *n++))
+			bytes++;
+	}
 	return (bytes);
 }
 
@@ -49,11 +49,12 @@ int format_str(va_list ap)
  * Return: bytes total
  */
 
-int format_percent(va_list ap)
+int format_percent(va_list ap, char **buffer)
 {
 	(void) ap;
 
-	return (write(1, "%", 1));
+	*(*buffer) = '%';
+	return (1);
 }
 
 /**
@@ -63,7 +64,14 @@ int format_percent(va_list ap)
  * Return: bytes total
  */
 
-int format_unkn(va_list  __attribute__((unused)) ap)
+int format_unkn(va_list  __attribute__((unused)) ap, char **buffer)
 {
-	return (write(1, "(null)", 6));
+	char *n, *copy = *buffer;
+	int bytes = 0;
+	(void) buffer;
+
+	n = "(null)";
+	while ((*copy++ = *n++))
+		bytes++;
+	return (bytes);
 }

@@ -10,7 +10,7 @@
  * Return: a pointer to the function
  */
 
-int (*get_ops_function(char s, int *bytes))(va_list ap)
+int (*get_ops_function(char s, char **buffer, int *bytes))(va_list ap, char **buffer)
 {
 	int i = 0;
 	d_dt data_types[] = {
@@ -27,6 +27,6 @@ int (*get_ops_function(char s, int *bytes))(va_list ap)
 			return (data_types[i].f);
 		i++;
 	}
-	*bytes += write(1, "%", 1), *bytes += write(1, &s, 1);
+	*(*buffer++) = '%', *(*buffer++) = s, bytes += 2;
 	return (format_unkn);
 }

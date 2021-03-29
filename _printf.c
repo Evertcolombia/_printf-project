@@ -1,7 +1,8 @@
+#include "holberton.h"
 #include <stdio.h>
 #include <unistd.h>
 #include <stdarg.h>
-#include "holberton.h"
+#include <stdlib.h>
 
 /**
  * _printf - print a formatted text
@@ -11,9 +12,10 @@
 
 int _printf(const char *format, ...)
 {
-	int bytes  = 0;
-	char *head, *current, *init;
-	int (*execute)(va_list ap);
+
+	int bytes = 0, bts = 0;
+	char *head, *current, *init, *buffer, *copy;
+	int (*execute)(va_list ap, char **buffer);
 	va_list ap;
 
 	if (!format)
@@ -21,6 +23,11 @@ int _printf(const char *format, ...)
 
 	va_start(ap, format);
 	current = head = init = (char *) format;
+
+	buffer = malloc(1024 * sizeof(char));
+	if (!buffer)
+		return (-1);
+	copy = buffer;
 
 	while (*head)
 	{
@@ -34,13 +41,20 @@ int _printf(const char *format, ...)
 				head++;
 				continue;
 			}
-			execute = get_ops_function(*(head + 1), &bytes);
-			bytes += execute(ap), current = init;
+			execute = get_ops_function(*(head + 1), &buffer, &bytes);
+			bts = execute(ap, &buffer);
+			current = init;
+			buffer += bts, bytes += bts;
 			head += 2;
 		}
 		else
-			bytes += write(1, head++, 1);
+			*buffer++ = *head++, bytes++;
 	}
+
+	buffer = copy;
+	write(1, buffer, bytes);
+	free(buffer);
 	va_end(ap);
+	printf("%d\n", bytes);
 	return (bytes);
 }
